@@ -30,11 +30,13 @@ public class AppUser {
 	private Integer userId;
 	
 	@ApiModelProperty(notes = "Username, debe ser único y not null")
-	@Column(name = "username", nullable = false, unique = true)
+	@Column(name = "username", nullable = false, unique = true, length=40)
+	@Size(min=5, message = "Debe tener entre 5 y 40 carácteres")
 	private String username;
 	
 	@ApiModelProperty(notes = "email, debe ser único y not null")
-	@Column(name = "email", nullable = false, unique = true)
+	@Column(name = "email", nullable = false, unique = true, length=60)
+	@Size(min=10, message = "Debe tener entre 10 y 60 carácteres")
 	private String email;
 	
 	@ApiModelProperty(notes = "Estado del usuario, boolean not null")
