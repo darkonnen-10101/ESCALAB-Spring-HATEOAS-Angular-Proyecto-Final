@@ -22,18 +22,35 @@ import com.proyectofinal.escalab.entity.Tag;
 import com.proyectofinal.escalab.exception.ModeloNotFoundException;
 import com.proyectofinal.escalab.service.impl.TagServiceImpl;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/tags")
 public class TagController {
 	@Autowired
 	private TagServiceImpl tagService;
 	
+	@ApiOperation(value = "Obtiene todos los tags", notes = "No recibe parámetros", 
+			response = List.class, responseContainer = "List")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 405, message = "No se encontraron tags en la BBDD"),
+	})
 	@GetMapping
 	public ResponseEntity<List<Tag>> listar() {
 		List<Tag> lista = tagService.listar();
 		return new ResponseEntity<List<Tag>>(lista, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Obtiene tag por id", notes = "Recibe una variable Integer para buscar por id.", 
+			response = ResponseEntity.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code=400, message = "Bad request"),
+			@ApiResponse(code = 405, message = "No se encontró el tag"),
+	})
 	@GetMapping("/{id}")
 	public ResponseEntity<Tag> listarPorId(@PathVariable("id") Integer id) {
 		Tag obj = tagService.leerPorId(id);
@@ -43,6 +60,12 @@ public class TagController {
 		return new ResponseEntity<Tag>(obj, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Crea un tag", notes = "Recibe un body de tipo Tag.", 
+			response = ResponseEntity.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code=400, message = "Bad request")
+	})
 	@PostMapping
 	public ResponseEntity<Object> registrar(@Valid @RequestBody Tag tag) {
 		Tag obj = tagService.registrar(tag);
@@ -50,12 +73,23 @@ public class TagController {
 		return ResponseEntity.created(location).build();
 	}
 	
+	@ApiOperation(value = "Actualiza un tag", notes = "Recibe un body de tipo Tag.", 
+			response = ResponseEntity.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code=400, message = "Bad request")
+	})
 	@PutMapping
 	public ResponseEntity<Tag> modificar(@Valid @RequestBody Tag tag) {
 		Tag obj = tagService.modificar(tag);
 		return new ResponseEntity<Tag>(obj, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Elimina un tag", notes = "Recibe una variable Integer para buscar por id.", 
+			response = ResponseEntity.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+	})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> eliminar(@PathVariable("id") Integer id) {
 		Tag obj = tagService.leerPorId(id);

@@ -22,18 +22,35 @@ import com.proyectofinal.escalab.entity.Recipient;
 import com.proyectofinal.escalab.exception.ModeloNotFoundException;
 import com.proyectofinal.escalab.service.impl.RecipientServiceImpl;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/recipients")
 public class RecipientController {
 	@Autowired
 	private RecipientServiceImpl recipientService;
 	
+	@ApiOperation(value = "Obtiene todos los destinatarios", notes = "No recibe parámetros", 
+			response = List.class, responseContainer = "List")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code = 405, message = "No se encontraron destinatarios en la BBDD"),
+	})
 	@GetMapping
 	public ResponseEntity<List<Recipient>> listar() {
 		List<Recipient> lista = recipientService.listar();
 		return new ResponseEntity<List<Recipient>>(lista, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Obtiene un destinatario por id", notes = "Recibe una variable Integer para buscar por id.", 
+			response = ResponseEntity.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code=400, message = "Bad request"),
+			@ApiResponse(code = 405, message = "No se encontró el destinatario"),
+	})
 	@GetMapping("/{id}")
 	public ResponseEntity<Recipient> listarPorId(@PathVariable("id") Integer id) {
 		Recipient obj = recipientService.leerPorId(id);
@@ -43,6 +60,12 @@ public class RecipientController {
 		return new ResponseEntity<Recipient>(obj, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Crea un destinatario", notes = "Recibe un body de tipo Recipient.", 
+			response = ResponseEntity.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code=400, message = "Bad request")
+	})
 	@PostMapping
 	public ResponseEntity<Object> registrar(@Valid @RequestBody Recipient recipient) {
 		Recipient obj = recipientService.registrar(recipient);
@@ -50,12 +73,23 @@ public class RecipientController {
 		return ResponseEntity.created(location).build();
 	}
 	
+	@ApiOperation(value = "Actualiza un destinatario", notes = "Recibe un body de tipo Recipient.", 
+			response = ResponseEntity.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+			@ApiResponse(code=400, message = "Bad request")
+	})
 	@PutMapping
 	public ResponseEntity<Recipient> modificar(@Valid @RequestBody Recipient recipient) {
 		Recipient obj = recipientService.modificar(recipient);
 		return new ResponseEntity<Recipient>(obj, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "Elimina un destinatario", notes = "Recibe una variable Integer para buscar por id.", 
+			response = ResponseEntity.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "OK"),
+	})
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> eliminar(@PathVariable("id") Integer id) {
 		Recipient obj = recipientService.leerPorId(id);

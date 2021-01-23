@@ -10,9 +10,9 @@ PostController con endpoint /posts/hateoas obedece a la tercera forma según el 
 
 [Link de archivo json](https://github.com/Adel-Cabrera/ESCALAB-Spring-HATEOAS-Angular-Proyecto-Final/tree/main/Example) para incluir un ejemplo de respuesta al consultar el endpoint.
 
-Entidad documentada -> Post.
+Entidades documentadas -> Post & AppUser.
 
-DTO creado -> PostDTO. Lo devuelve el endpoint /posts/hateoas en PostController (incluye tags y user withSelfRel()) 
+DTO creado -> PostDTO. Lo devuelve el endpoint /posts/hateoas en PostController (incluye user y tags, ambos con withSelfRel()) 
 
 Todos los controllers documentados.
 

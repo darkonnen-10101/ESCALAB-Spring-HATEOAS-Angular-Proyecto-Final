@@ -6,7 +6,6 @@
             "username": "adel@gmail.com",
             "email": "adel@gmail.com",
             "enabled": true,
-            "password": "$2a$10$ju20i95JTDkRa7Sua63JWOChSBc0MNFtG/6Sps2ahFFqN.HCCUMW.",
             "groupsUsers": [],
             "roles": [
                 {
@@ -28,13 +27,7 @@
             "userposts": [
                 {
                     "postId": 5,
-                    "postText": "Post text 1",
-                    "postTags": [
-                        {
-                            "tagId": 1,
-                            "tagName": "tag1"
-                        }
-                    ]
+                    "postText": "Post text 1"
                 }
             ],
             "userMessages": []
