@@ -30,6 +30,7 @@ public class Post {
 	@Size(min = 1, max= 200, message = "text must be present, min 1 max 200")	
 	private String postText;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private AppUser postCreator;

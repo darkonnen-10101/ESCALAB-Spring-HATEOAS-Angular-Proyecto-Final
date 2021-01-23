@@ -1,0 +1,63 @@
+[
+    {
+        "idPost": 5,
+        "user": {
+            "userId": 1,
+            "username": "adel@gmail.com",
+            "email": "adel@gmail.com",
+            "enabled": true,
+            "password": "$2a$10$ju20i95JTDkRa7Sua63JWOChSBc0MNFtG/6Sps2ahFFqN.HCCUMW.",
+            "groupsUsers": [],
+            "roles": [
+                {
+                    "roleId": 1,
+                    "roleName": "ADMIN",
+                    "roleDescription": "Administrador"
+                },
+                {
+                    "roleId": 2,
+                    "roleName": "USER",
+                    "roleDescription": "Usuario"
+                },
+                {
+                    "roleId": 3,
+                    "roleName": "DBA",
+                    "roleDescription": "Admin de bd"
+                }
+            ],
+            "userposts": [
+                {
+                    "postId": 5,
+                    "postText": "Post text 1",
+                    "postTags": [
+                        {
+                            "tagId": 1,
+                            "tagName": "tag1"
+                        }
+                    ]
+                }
+            ],
+            "userMessages": []
+        },
+        "tags": [
+            {
+                "tagId": 1,
+                "tagName": "tag1"
+            }
+        ],
+        "links": [
+            {
+                "rel": "self",
+                "href": "http://localhost:8080/posts/5"
+            },
+            {
+                "rel": "self",
+                "href": "http://localhost:8080/users/1"
+            },
+            {
+                "rel": "self",
+                "href": "http://localhost:8080/tags"
+            }
+        ]
+    }
+]
