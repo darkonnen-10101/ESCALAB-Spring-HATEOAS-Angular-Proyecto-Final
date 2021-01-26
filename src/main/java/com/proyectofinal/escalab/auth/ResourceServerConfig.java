@@ -1,4 +1,4 @@
-package com.proyectofinal.escalab.config;
+package com.proyectofinal.escalab.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

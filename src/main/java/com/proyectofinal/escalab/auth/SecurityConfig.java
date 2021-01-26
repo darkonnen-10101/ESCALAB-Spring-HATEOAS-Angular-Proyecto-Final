@@ -1,4 +1,4 @@
-package com.proyectofinal.escalab.config;
+package com.proyectofinal.escalab.auth;
 
 import javax.sql.DataSource;
 
